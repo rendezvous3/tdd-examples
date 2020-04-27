@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable import/prefer-default-export */
 import checkPropTypes from "check-prop-types";
 
