@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
  */
 function Congrats(props) {
   let content;
-  if (props.sucess) {
+  if (props.success) {
     content = (
       <div data-test="component-congrats">
         <span data-test="congrats-message">
@@ -24,7 +24,7 @@ function Congrats(props) {
 }
 
 Congrats.propTypes = {
-  sucess: PropTypes.bool.isRequired,
+  success: PropTypes.bool.isRequired,
 };
 
 export default Congrats;
