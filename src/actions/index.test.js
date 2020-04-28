@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
-import { correctGuess, actionTypes } from './';
+import { correctGuess, actionTypes } from "./";
 
-describe('correctGuess', () => {
+describe("correctGuess", () => {
   test("returns an action with type `CORRECT_GUESS`", () => {
     const action = correctGuess();
     // toEqual is deep equality test
