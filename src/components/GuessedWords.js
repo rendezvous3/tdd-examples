@@ -11,19 +11,19 @@ const GuessedWords = ({ guessedWords }) => {
     content = (
       <div data-test="guessed-words">
         <h3>Guessed Words</h3>
-        <table>
-          <thead>
+        <table className="table table-sm">
+          <thead className="thead-light">
             <tr>
               <th>Guess</th>
-              Matching Letters
+              <th>Matching Letters</th>
             </tr>
           </thead>
           <tbody>
             {guessedWords.map((word, idx) => {
               return (
                 <tr data-test="guessed-word" key={idx}>
-                  <td>{word.guessWord}</td>
-                  <td>{word.letterMatchCounter}</td>
+                  <td>{word.guessedWord}</td>
+                  <td>{word.letterMatchCount}</td>
                 </tr>
               );
             })}
