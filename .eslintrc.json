@@ -7,6 +7,7 @@
         "func-names": "off",
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "object-shorthand": "off",
-        "react/prop-types": "warn"
+        "react/prop-types": "warn",
+        "react/no-array-index-key": "warn"
     }
 }
