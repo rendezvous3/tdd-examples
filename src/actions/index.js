@@ -8,6 +8,6 @@ export const actionTypes = {
  */
 export function correctGuess() {
   return {
-    type: actionTypes.CORRECT_GUESS
+    type: actionTypes.CORRECT_GUESS,
   };
 }
