@@ -1,8 +1,8 @@
 import React from "react";
-import "./App.css";
+import "./css/App.css";
 
-import GuessedWords from "./components/GuessedWords";
-import Congrats from "./components/Congrats";
+import GuessedWords from "./GuessedWords";
+import Congrats from "./Congrats";
 
 function App() {
   return (
