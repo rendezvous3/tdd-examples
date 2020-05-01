@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * Functional Component for congragulatory message.
@@ -11,14 +11,14 @@ function Congrats(props) {
   let content;
   if (props.success) {
     content = (
-      <div data-test="component-congrats" className="alert alert-success">
-        <span data-test="congrats-message">
+      <div data-test='component-congrats' className='alert alert-success'>
+        <span data-test='congrats-message'>
           Congratulations! You guessed the word!
         </span>
       </div>
     );
   } else {
-    content = <div data-test="component-congrats" />;
+    content = <div data-test='component-congrats' />;
   }
   return content;
 }
