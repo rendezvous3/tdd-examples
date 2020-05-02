@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import { findByTestAttr, storeFactory } from '../../test/testUtils';
 import Input from '../components/Input';
@@ -26,7 +26,7 @@ const setup = (initialState = {}) => {
  */
 const setupInputShallow = (initialState = {}) => {
   const store = storeFactory(initialState);
-  const wrapper = shallow(<Input store={store} />)
+  const wrapper = shallow(<Input store={store} />);
   return wrapper;
 };
 
