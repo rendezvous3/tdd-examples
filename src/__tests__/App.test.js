@@ -3,7 +3,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { findByTestAttr, storeFactory } from '../../test/testUtils';
-import App from '../components/App';
+import App, { UnconnectedApp, uncApp } from '../components/App';
 
 /**
  * Factory function returning connected component
@@ -65,5 +65,43 @@ describe('App component redux props', () => {
     const wrapper = setupShallow();
     const fetchFN = wrapper.props().children.props.fetchSecret;
     expect(fetchFN).toBeInstanceOf(Function);
+  });
+});
+
+describe('Testing how many times action calls are envoked', () => {
+  let defaultProps;
+  beforeEach(() => {
+    defaultProps = {
+      success: false,
+      secretWord: 'party',
+      guessedWords: [],
+      getSecretWord: () => {},
+    };
+  });
+  test('`getSecretWord` runs on Unconnected App mount', () => {
+    const getSecretWordMock = jest.fn();
+    defaultProps.getSecretWord = getSecretWordMock;
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    const wrapper = shallow(<UnconnectedApp {...defaultProps} />);
+
+    wrapper.instance().componentDidMount();
+
+    const getSecretWordCallCount = getSecretWordMock.mock.calls.length;
+
+    expect(getSecretWordCallCount).toBe(1);
+  });
+
+  test('uncApp `getSecret` word test', () => {
+    const useEffect = jest
+      .spyOn(React, 'useEffect')
+      .mockImplementation((f) => f());
+    const getSecretMock = jest.fn();
+    defaultProps.getSecretWord = getSecretMock();
+
+    const getSecretWordCallCount = getSecretMock.mock.calls.length;
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    const wrapper = shallow(<uncApp {...defaultProps} />);
+    // expect(getSecretMock).toHaveBeenCalled();
+    expect(getSecretWordCallCount).toBe(1);
   });
 });
