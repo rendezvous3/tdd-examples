@@ -1,9 +1,10 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-undef */
 import React from 'react';
 import { shallow } from 'enzyme';
 
 import { findByTestAttr, storeFactory } from '../../test/testUtils';
-import Input from '../components/Input';
+import Input, { UnconnectedInput } from '../components/Input';
 
 /**
  * @function - setup
@@ -94,5 +95,24 @@ describe('redux props', () => {
     const wrapper = setupInputShallow();
     const guessWordProp = wrapper.props().children.props.guessWord;
     expect(guessWordProp).toBeInstanceOf(Function);
+  });
+});
+
+describe('guessWord on Submit Click test', () => {
+  let defaultProps;
+  beforeEach(() => {
+    defaultProps = {
+      success: false,
+      guessWord: jest.fn(),
+    };
+  });
+  test('guessWord called when submit btn clicked', () => {
+    // const guessWordMock = jest.fn();
+    // defaultProps.guessWord = guessWordMock;
+    const wrapper = shallow(<UnconnectedInput {...defaultProps} />);
+    const button = findByTestAttr(wrapper, 'submit-button');
+    button.simulate('click');
+    const guessWordMockCallCount = defaultProps.guessWord.mock.calls.length;
+    expect(guessWordMockCallCount).toBe(1);
   });
 });

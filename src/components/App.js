@@ -15,12 +15,12 @@ export class UnconnectedApp extends Component {
   }
 
   componentDidMount() {
-    const { getSecretWord } = this.props;
-    getSecretWord();
+    const { fetchSecret } = this.props;
+    fetchSecret();
   }
 
   render() {
-    const { success, secretWord, guessedWords, fetchSecret } = this.props;
+    const { success, secretWord, guessedWords } = this.props;
     return (
       <div data-test='app' className='container'>
         <h1 data-test='app-title'>Jotto</h1>
@@ -60,13 +60,14 @@ uncApp.propTypes = {
   success: PropTypes.bool.isRequired,
   secretWord: PropTypes.string.isRequired,
   guessedWords: PropTypes.array.isRequired,
+  fetchSecret: PropTypes.func.isRequired,
 };
 
 UnconnectedApp.propTypes = {
   success: PropTypes.bool.isRequired,
   secretWord: PropTypes.string.isRequired,
   guessedWords: PropTypes.array.isRequired,
-  getSecretWord: PropTypes.func.isRequired,
+  fetchSecret: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, { fetchSecret: fetchAndSetSecretWord })(

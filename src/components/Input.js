@@ -9,7 +9,8 @@ import { guessWord } from '../actions';
 //   }
 // }
 
-function Input({ success }) {
+// eslint-disable-next-line no-shadow
+export function UnconnectedInput({ success, guessWord }) {
   const content = success ? null : (
     <form className='form'>
       <input
@@ -22,6 +23,7 @@ function Input({ success }) {
         data-test='submit-button'
         className='btn btn-primary'
         type='submit'
+        onClick={() => guessWord()}
       >
         Guess
       </button>
@@ -34,8 +36,9 @@ const mapStateToProps = ({ success }) => {
   return { success };
 };
 
-Input.propTypes = {
+UnconnectedInput.propTypes = {
   success: PropTypes.bool.isRequired,
+  guessWord: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, { guessWord })(Input);
+export default connect(mapStateToProps, { guessWord })(UnconnectedInput);

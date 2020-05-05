@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-undef */
 import React from 'react';
 import { shallow } from 'enzyme';
@@ -75,12 +76,12 @@ describe('Testing how many times action calls are envoked', () => {
       success: false,
       secretWord: 'party',
       guessedWords: [],
-      getSecretWord: () => {},
+      fetchSecret: () => {},
     };
   });
-  test('`getSecretWord` runs on Unconnected App mount', () => {
+  test('`fetchSecret` runs on Unconnected App mount', () => {
     const getSecretWordMock = jest.fn();
-    defaultProps.getSecretWord = getSecretWordMock;
+    defaultProps.fetchSecret = getSecretWordMock;
     // eslint-disable-next-line react/jsx-props-no-spreading
     const wrapper = shallow(<UnconnectedApp {...defaultProps} />);
 
@@ -90,18 +91,27 @@ describe('Testing how many times action calls are envoked', () => {
 
     expect(getSecretWordCallCount).toBe(1);
   });
-
-  test('uncApp `getSecret` word test', () => {
-    const useEffect = jest
-      .spyOn(React, 'useEffect')
-      .mockImplementation((f) => f());
-    const getSecretMock = jest.fn();
-    defaultProps.getSecretWord = getSecretMock();
-
-    const getSecretWordCallCount = getSecretMock.mock.calls.length;
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    const wrapper = shallow(<uncApp {...defaultProps} />);
-    // expect(getSecretMock).toHaveBeenCalled();
-    expect(getSecretWordCallCount).toBe(1);
-  });
 });
+
+// describe('uncApp useEffect', () => {
+//   let props;
+//   let wrapper;
+//   let useEffect;
+//   const mockUseEffect = () => {
+//     useEffect.mockImplementationOnce((f) => f());
+//   };
+//   beforeEach(() => {
+//     props = {
+//       success: false,
+//       secretWord: 'party',
+//       guessedWords: [],
+//       fetchSecret: jest.fn(),
+//     };
+//     useEffect = jest.spyOn(React, 'useEffect');
+//     mockUseEffect();
+//     wrapper = shallow(<uncApp {...props} />);
+//   });
+//   test('useEffect is calling fetchSecret', () => {
+//     expect(props.fetchSecret).toHaveBeenCalled();
+//   });
+// });
